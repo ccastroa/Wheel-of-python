@@ -4,6 +4,7 @@
 import json
 import wof_computer
 import random
+import time
 
 NUM_HUMAN   = 1
 NUM_PLAYERS = 3
@@ -45,11 +46,6 @@ def createPlayer(isComputer, player_num):
         name = input('Enter your name: ')
 
     return WheelOfFortunePlayer(name, isComputer)
-
-
-#####################################################
-################ Do not change above ################
-#####################################################
 
 
 class WheelOfFortunePlayer():
@@ -104,9 +100,6 @@ def letter_count(letter, phrase):
             let+=1
     return let
 
-###############################################################
-####################### write VOWEL_COST ######################
-###############################################################
 
 def buyvowel(player):
     player.subtractMoney(VOWEL_COST)
@@ -119,23 +112,6 @@ def playround():
         if response=="Play":
             player.playGame()
 
-# print('Random spin result:')
-# wheelPrize = spinWheel()
-# print(wheelPrize)
-#
-# category, phrase = getRandomCategoryAndPhrase()
-# print('\nRandom Category: {}\nRandom Phrase:   {}'.format(category, phrase))
-#
-# # example code to illustrate how getMove works. You should delete this.
-# comp_obscured_phrase = 'R___ ____AR'
-# comp_obscured_category = 'Place'
-#
-# print('\n\nComputer guess for {} ({})'.format(comp_obscured_phrase, comp_obscured_category))
-#
-# computer_1 = wof_computer.WOFComputer(difficulty = random.randint(1,9))
-# computerMove = computer_1.getMove(money=0, category=comp_obscured_category, obscuredPhrase = comp_obscured_phrase,
-#                                     guessed=['P','N','X','R','A','Z','S'], wheelPrize=wheelPrize)
-# print('Computer says: {}'.format(computerMove))
 
 def playGame():
     players = [createPlayer(player_num>=NUM_HUMAN, player_num+1) for player_num in range(NUM_PLAYERS)]
@@ -169,11 +145,12 @@ def playGame():
             while True:
 
                 guess= player.getMove(player.prizeMoney, category, obscuredPhrase, guessed, wheelPrize)
-
+                time.sleep(1)
 
 
                 if guess in guessed:
                     print("{} was already guessed. Guess again!".format(guess))
+                    time.sleep(1)
                     continue
 
 
