@@ -141,7 +141,6 @@ def playGame():
     players = [createPlayer(player_num>=NUM_HUMAN, player_num+1) for player_num in range(NUM_PLAYERS)]
     guessed = []
     category, phrase = getRandomCategoryAndPhrase()
-    #print(phrase)                             ################## ERASE!!!
     playerIndex = 0
     while True:
         player = players[playerIndex]
